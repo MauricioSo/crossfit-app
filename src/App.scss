@@ -1,39 +1,39 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans&display=swap");
+
+$primaryColor: #daeadb;
+$secondaryColor: #e7ede8;
+$colorFont: #387e17;
+$fontFamily: "Open Sans", "Noto Sans", sans-serif;
+
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 2fr 1fr;
-      grid-template-columns: 1fr 2fr 1fr;
-      grid-template-areas: "header   header   header" "exercise routine  calendar" "exercise routine  calendar" "exercise routine  calendar";
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    "header   header   header"
+    "exercise routine  calendar"
+    "exercise routine  calendar"
+    "exercise routine  calendar";
   background: white;
   width: 100vw;
   height: 100vh;
 }
-
 /*exercises style*/
 .exercises {
   width: 20vw;
   height: 75vh;
   background: white;
   overflow-y: scroll;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 3;
-  -ms-grid-column: 1;
   grid-area: exercise;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
   border-radius: 13px;
   background: #ffffff;
-  -webkit-box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
-          box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
+  box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
   padding: 20px;
   margin-left: 20px;
 }
@@ -51,18 +51,16 @@
 
 #exercises::-webkit-scrollbar-thumb {
   border-radius: 10px;
+
   background-color: #999999;
 }
 
 .exercise-single {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: 10px;
   border-radius: 9px;
   background: #ffffff;
-  -webkit-box-shadow: 7px 7px 6px #d6d6d6, -7px -7px 6px #ffffff;
-          box-shadow: 7px 7px 6px #d6d6d6, -7px -7px 6px #ffffff;
+  box-shadow: 7px 7px 6px #d6d6d6, -7px -7px 6px #ffffff;
 }
 
 .img-exercise {
@@ -75,24 +73,20 @@
   width: 50%;
   height: 100px;
   border-radius: 16px;
-  background: #e7ede8;
+  background: $secondaryColor;
 }
 
 .container-text {
   width: 50%;
   height: 100%;
   border-radius: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-item-align: center;
-      align-self: center;
+  justify-content: center;
+  align-self: center;
 }
 
 /*routine style*/
+
 .routine {
   width: 45vw;
   height: 70vh;
@@ -100,46 +94,37 @@
   overflow-y: scroll;
   border-radius: 13px;
   background: #ffffff;
-  -webkit-box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
-          box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
+  box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
   padding: 20px;
 }
 
 .routine-single {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin: 10px;
   border-radius: 9px;
   background: #ffffff;
-  -webkit-box-shadow: 7px 7px 6px #d6d6d6, -7px -7px 6px #ffffff;
-          box-shadow: 7px 7px 6px #d6d6d6, -7px -7px 6px #ffffff;
+  box-shadow: 7px 7px 6px #d6d6d6, -7px -7px 6px #ffffff;
 }
-
 .container-img-rou {
   width: 30%;
   height: 100px;
   border-radius: 15px;
-  background: #e7ede8;
+  background: $secondaryColor;
   border: none;
 }
-
 .container-text-rou {
   width: 70%;
   height: 100%;
   border-radius: 15px;
   margin-left: 20px;
 }
-
 .title-rou {
   margin-top: 10px;
 }
-
 .reps-rou,
 .series-rou {
-  color: dimgray;
+  color: rgb(105, 105, 105);
 }
-
 /*routine scroll style*/
 .routine::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -154,38 +139,24 @@
 
 .routine::-webkit-scrollbar-thumb {
   border-radius: 10px;
+
   background-color: #999999;
 }
-
 .wrapper-routine {
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 3;
-  -ms-grid-column: 2;
   grid-area: routine;
   margin: 20px;
 }
-
 /*calendar*/
 .calendar {
   max-width: 170px;
   height: 80vh;
   overflow-y: scroll;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 3;
-  -ms-grid-column: 3;
   grid-area: calendar;
   margin: 20px;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .table-wrapper {
@@ -193,30 +164,24 @@
   padding: 20px;
   border-radius: 13px;
   background: #ffffff;
-  -webkit-box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
-          box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
+  box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
 }
-
 .table {
   width: 60px;
   padding: 15px;
   border-radius: 9px;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  -webkit-box-shadow: 9px 9px 18px #d9d9d9, -9px -9px 18px #ffffff;
-          box-shadow: 9px 9px 18px #d9d9d9, -9px -9px 18px #ffffff;
+  box-shadow: 9px 9px 18px #d9d9d9, -9px -9px 18px #ffffff;
 }
-
 .table-display {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 10px;
   width: 70px;
   padding: 5px;
+
   border-radius: 9px;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  -webkit-box-shadow: 5px 5px 5px #e3e3e3, -5px -5px 5px #ffffff;
-          box-shadow: 5px 5px 5px #e3e3e3, -5px -5px 5px #ffffff;
+  box-shadow: 5px 5px 5px #e3e3e3, -5px -5px 5px #ffffff;
 }
 
 .day-display {
@@ -227,7 +192,6 @@
 .icon {
   font-size: 30px;
 }
-
 /*routiner scroll style*/
 .calendar::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -242,6 +206,7 @@
 
 .calendar::-webkit-scrollbar-thumb {
   border-radius: 10px;
+
   background-color: #999999;
 }
 
@@ -250,10 +215,6 @@
 }
 
 .header {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
   grid-area: header;
   text-align: center;
 }
-/*# sourceMappingURL=App.css.map */
