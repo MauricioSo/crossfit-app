@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans&display=swap");
 
 $primaryColor: #daeadb;
-$secondaryColor: #e7ede8;
+$secondaryColor: #ede7e7;
 $colorFont: #387e17;
 $fontFamily: "Open Sans", "Noto Sans", sans-serif;
 
@@ -87,6 +87,14 @@ $fontFamily: "Open Sans", "Noto Sans", sans-serif;
 
 /*routine style*/
 
+.checkTraining {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+.label-checkbox {
+  font-family: $fontFamily;
+}
 .routine {
   width: 45vw;
   height: 70vh;
@@ -96,6 +104,8 @@ $fontFamily: "Open Sans", "Noto Sans", sans-serif;
   background: #ffffff;
   box-shadow: inset 7px 7px 14px #dbdbdb, inset -7px -7px 14px #ffffff;
   padding: 20px;
+  padding-top: 15px;
+  margin-top: 10px;
 }
 
 .routine-single {
@@ -125,6 +135,17 @@ $fontFamily: "Open Sans", "Noto Sans", sans-serif;
 .series-rou {
   color: rgb(105, 105, 105);
 }
+
+/*button routine*/
+.btn-save {
+  width: 40px;
+  height: 20px;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 6px 6px 11px #d9d9d9, -6px -6px 11px #ffffff;
+  margin: 10px;
+  font-family: $fontFamily;
+}
 /*routine scroll style*/
 .routine::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -146,17 +167,22 @@ $fontFamily: "Open Sans", "Noto Sans", sans-serif;
   grid-area: routine;
   margin: 20px;
 }
+
 /*calendar*/
 .calendar {
-  max-width: 170px;
+  width: 120px;
   height: 80vh;
   overflow-y: scroll;
   grid-area: calendar;
-  margin: 20px;
-  text-align: center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container-cal {
+  display: flex;
+  justify-content: center;
 }
 
 .table-wrapper {
@@ -178,7 +204,6 @@ $fontFamily: "Open Sans", "Noto Sans", sans-serif;
   margin-bottom: 10px;
   width: 70px;
   padding: 5px;
-
   border-radius: 9px;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
   box-shadow: 5px 5px 5px #e3e3e3, -5px -5px 5px #ffffff;
