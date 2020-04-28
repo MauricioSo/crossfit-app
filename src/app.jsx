@@ -11,6 +11,11 @@ import firebaseConfig from "./firebase";
 import * as firebase from "firebase";
 import { ResponsivePie } from "@nivo/pie";
 //function for select only values different that before.Have to retunr an object
+import firestore from "firebase/firestore";
+import exerJSON from "./exercisesJSON";
+
+
+
 
 const Row = ({ row }) => {
   return (
@@ -25,8 +30,8 @@ const Row = ({ row }) => {
             row.training === true
               ? "#e7ede8"
               : row.training === false
-              ? "#eba1a1"
-              : "white",
+                ? "#eba1a1"
+                : "white",
           width: "10px",
           borderRadius: "5px"
         }}
@@ -38,6 +43,23 @@ const Row = ({ row }) => {
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
+const db = firebase.firestore();
+
+// exerJSON.map(function (obj) {
+//   db.collection("exercises").add({
+
+//     name: obj.name,
+//     picture: obj.picture,
+//     repetition: obj.repetition,
+//     series: obj.series
+//   }).then(function (docRef) {
+
+//   })
+//     .catch(function (error) {
+//       console.error("Error adding document: ", error);
+//     });
+// });
 
 // const data = date.map((day, index) => {
 //   return {
@@ -52,34 +74,28 @@ function App() {
   const [day, setDay] = useState(0);
   const [dayTrained, setDayTrained] = useState(false);
   const [calendar, setCalendar] = useState([]);
+  const [colle, setColle] = useState([]);
   //const [dataPie, setDataPie] = useState([]);
   //first set the exercises state, fetching the json db
   useEffect(() => {
-    const ref = firebase.database().ref();
-    ref.on(
-      "value",
-      function(snapshot) {
-        const days = [];
-        snapshot.val().forEach((data, i) => {
-          return days.push(data);
-        });
-        console.log(days);
-        setCalendar(days);
 
-        setDayTrained(snapshot.val()[day].training);
-        setExercise(snapshot.val()[day].exercises);
-      },
-      function(error) {
-        console.log("Error: " + error.code);
-      }
-    );
+    db.collection("exercises")
+      .get()
+      .then(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => doc.data())
+        setExercise(data);
+      }).catch(err => console.log(err));
+
+    const ref = firebase.database().ref();
+
   }, []);
-  console.log(calendar);
+  console.log(exercises)
+  
   useEffect(() => {
     const ref = firebase.database().ref();
     ref.on(
       "value",
-      function(snapshot) {
+      function (snapshot) {
         const days = [];
         snapshot.val().forEach((data, i) => {
           return days.push(data);
@@ -89,7 +105,7 @@ function App() {
         setDayTrained(snapshot.val()[day].training);
         setExercise(snapshot.val()[day].exercises);
       },
-      function(error) {
+      function (error) {
         console.log("Error: " + error.code);
       }
     );
@@ -106,9 +122,9 @@ function App() {
       exercises.map(exercise =>
         exercise.name === selected
           ? {
-              ...exercise,
-              selected: exercise.selected === false ? true : false
-            }
+            ...exercise,
+            selected: exercise.selected === false ? true : false
+          }
           : exercise
       )
     );
@@ -122,9 +138,9 @@ function App() {
       exercises.map(exercise =>
         exercise.name === selected
           ? {
-              ...exercise,
-              selected: false
-            }
+            ...exercise,
+            selected: false
+          }
           : exercise
       )
     );
