@@ -52,7 +52,8 @@ const db = firebase.firestore();
 //     name: obj.name,
 //     picture: obj.picture,
 //     repetition: obj.repetition,
-//     series: obj.series
+//     series: obj.series,
+//     selected: false
 //   }).then(function (docRef) {
 
 //   })
@@ -61,13 +62,7 @@ const db = firebase.firestore();
 //     });
 // });
 
-// const data = date.map((day, index) => {
-//   return {
-//     day: index,
-//     training: day.training === null ? "not-yet" : day.training,
-//     exercises: date[index].exercises
-//   };
-// });
+
 
 function App() {
   const [exercises, setExercise] = useState([]);
@@ -86,11 +81,11 @@ function App() {
         setExercise(data);
       }).catch(err => console.log(err));
 
-    const ref = firebase.database().ref();
+
 
   }, []);
-  console.log(exercises)
-  
+
+
   useEffect(() => {
     const ref = firebase.database().ref();
     ref.on(
@@ -100,7 +95,7 @@ function App() {
         snapshot.val().forEach((data, i) => {
           return days.push(data);
         });
-        console.log(days);
+
         setCalendar(days);
         setDayTrained(snapshot.val()[day].training);
         setExercise(snapshot.val()[day].exercises);
@@ -215,21 +210,25 @@ function App() {
 
       {/*exercise start here*/}
       <motion.div className="exercises" id="exercises">
-        {exercises.map((exercise, i) => (
-          <Exercise
-            key={i.toString()}
-            name={exercise.name}
-            description={exercise.repetition}
-            onClick={selectFromExercises}
-            className="exercise-single"
-            selected={exercise.name}
-            classImg="img-exercise"
-            classTitle="title-exer"
-            classCategory="cat-exercise"
-            classContainerImg="container-img"
-            classContainerText="container-text"
-          />
-        ))}
+        {exercises
+          .filter(value => {
+            return value.selected === false;
+          })
+          .map((exercise, i) => (
+            <Exercise
+              key={i.toString()}
+              name={exercise.name}
+              description={exercise.repetition}
+              onClick={selectFromExercises}
+              className="exercise-single"
+              selected={exercise.name}
+              classImg="img-exercise"
+              classTitle="title-exer"
+              classCategory="cat-exercise"
+              classContainerImg="container-img"
+              classContainerText="container-text"
+            />
+          ))}
       </motion.div>
       {/*routine start here*/}
 
